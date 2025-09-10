@@ -1,0 +1,79 @@
+<div class="todo-container">
+  <h2>Signal-Based Todo List</h2>
+
+  <!-- Stats Panel -->
+  <div class="stats-panel">
+    <div class="stat">
+      <span class="stat-number">{{ totalCount() }}</span>
+      <span class="stat-label">Total</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">{{ pendingCount() }}</span>
+      <span class="stat-label">Pending</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">{{ completedCount() }}</span>
+      <span class="stat-label">Completed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">{{ completionRate() }}%</span>
+      <span class="stat-label">Progress</span>
+    </div>
+  </div>
+
+  <!-- Add Todo Form -->
+  <div class="add-todo">
+    <input 
+      type="text" 
+      placeholder="Add a new todo..."
+      [value]="newTodoText()"
+      (input)="onNewTodoInput($event)"
+      (keyup.enter)="addTodo()"
+      class="todo-input"
+    >
+    <button (click)="addTodo()" class="btn btn-primary">Add</button>
+  </div>
+
+  <!-- Todo List -->
+  <div class="todo-list">
+    @for (todo of filteredTodos(); track todo.id) {
+      <div class="todo-item" [class.completed]="todo.completed">
+        <input 
+          type="checkbox" 
+          [checked]="todo.completed"
+          (change)="toggleTodo(todo.id)"
+          class="todo-checkbox"
+        >
+        <span class="todo-text">{{ todo.text }}</span>
+        <button (click)="deleteTodo(todo.id)" class="btn btn-danger btn-sm">Delete</button>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>No todos yet. Add one above!</p>
+      </div>
+    }
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button 
+      (click)="clearCompleted()" 
+      [disabled]="completedCount() === 0"
+      class="btn btn-secondary"
+    >
+      Clear Completed ({{ completedCount() }})
+    </button>
+  </div>
+
+  <!-- Signal Features Info -->
+  <div class="signal-info">
+    <h4>Signal Features Demonstrated:</h4>
+    <ul>
+      <li><strong>signal&lt;T[]&gt;():</strong> Complex object arrays as signals</li>
+      <li><strong>computed():</strong> Derived statistics (counts, completion rate)</li>
+      <li><strong>update():</strong> Immutable array operations</li>
+      <li><strong>&#64;for track:</strong> New Angular control flow with signals</li>
+      <li><strong>Two-way binding:</strong> Signal-based form handling</li>
+    </ul>
+  </div>
+</div>

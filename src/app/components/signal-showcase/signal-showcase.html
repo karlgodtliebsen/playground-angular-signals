@@ -1,0 +1,125 @@
+<div class="showcase-container">
+  <header class="showcase-header">
+    <h1>Angular Signals Playground</h1>
+    <p class="subtitle">Exploring the latest in Angular reactive programming with Signals (Angular 20.3.0)</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="showcase-nav">
+    <button 
+      (click)="setView('overview')" 
+      [class.active]="currentView() === 'overview'"
+      class="nav-btn"
+    >
+      Overview
+    </button>
+    <button 
+      (click)="setView('counter')" 
+      [class.active]="currentView() === 'counter'"
+      class="nav-btn"
+    >
+      Counter Demo
+    </button>
+    <button 
+      (click)="setView('todo-list')" 
+      [class.active]="currentView() === 'todo-list'"
+      class="nav-btn"
+    >
+      Todo List Demo
+    </button>
+  </nav>
+
+  <!-- Overview Section -->
+  @if (currentView() === 'overview') {
+    <div class="overview-section">
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>🚀 Angular Signals</h3>
+          <p>Modern reactive programming with fine-grained reactivity</p>
+          <ul>
+            <li>Better performance than observables for simple state</li>
+            <li>Automatic dependency tracking</li>
+            <li>Simpler mental model</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>🔄 Real-time Updates</h3>
+          <p>Watch signals update automatically</p>
+          <div class="demo-section">
+            <p>Current Value: <strong>{{ demonstrationValue() }}</strong></p>
+            <p>Doubled: <strong>{{ transformedValue().doubled }}</strong></p>
+            <p>Squared: <strong>{{ transformedValue().squared }}</strong></p>
+            <p>Is Even: <strong>{{ transformedValue().isEven ? 'Yes' : 'No' }}</strong></p>
+            
+            <div class="demo-controls">
+              <button (click)="updateDemonstrationValue(-1)" class="btn btn-secondary">-1</button>
+              <button (click)="updateDemonstrationValue(1)" class="btn btn-secondary">+1</button>
+              <button (click)="resetDemonstrationValue()" class="btn btn-primary">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <h3>📊 Modern Testing</h3>
+          <p>Latest Angular testing capabilities</p>
+          <ul>
+            <li>Component testing with signals</li>
+            <li>Karma + Jasmine setup</li>
+            <li>Effect testing strategies</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3>🎯 New Control Flow</h3>
+          <p>Angular's new &#64;if, &#64;for syntax</p>
+          <ul>
+            <li>Better performance</li>
+            <li>Type safety improvements</li>
+            <li>Cleaner templates</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="api-reference">
+        <h3>Signal API Reference</h3>
+        <div class="api-grid">
+          <div class="api-item">
+            <code>signal(value)</code>
+            <p>Creates a writable signal</p>
+          </div>
+          <div class="api-item">
+            <code>computed(() => ...)</code>
+            <p>Creates a read-only derived signal</p>
+          </div>
+          <div class="api-item">
+            <code>effect(() => ...)</code>
+            <p>Runs side effects when signals change</p>
+          </div>
+          <div class="api-item">
+            <code>signal.set(value)</code>
+            <p>Sets a new value</p>
+          </div>
+          <div class="api-item">
+            <code>signal.update(fn)</code>
+            <p>Updates using a function</p>
+          </div>
+          <div class="api-item">
+            <code>signal()</code>
+            <p>Reads the current value</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Counter Demo -->
+  @if (currentView() === 'counter') {
+    <app-counter></app-counter>
+  }
+
+  <!-- Todo List Demo -->
+  @if (currentView() === 'todo-list') {
+    <app-todo-list></app-todo-list>
+  }
+</div>
