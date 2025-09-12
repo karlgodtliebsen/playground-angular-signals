@@ -21,9 +21,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -33,8 +31,17 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "@angular/material/prebuilt-themes/magenta-violet.css",
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "@angular/material/prebuilt-themes/purple-green.css",
+              "@angular/material/prebuilt-themes/rose-red.css",
               "src/styles.scss"
-            ]
+            ],
+            "outputPath": "dist/angular-signals-app"
           },
           "configurations": {
             "production": {
@@ -48,6 +55,12 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -78,10 +91,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -91,6 +101,14 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "@angular/material/prebuilt-themes/magenta-violet.css",
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "@angular/material/prebuilt-themes/purple-green.css",
+              "@angular/material/prebuilt-themes/rose-red.css",
               "src/styles.scss"
             ]
           }

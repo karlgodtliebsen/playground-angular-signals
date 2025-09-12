@@ -7,17 +7,18 @@
 .showcase-header {
   text-align: center;
   margin-bottom: 3rem;
-  
+  //height: 200px;
+
   h1 {
     color: #333;
     font-size: 3rem;
     margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    // background: linear-gradient(135deg, #007bff, #0056b3);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+    // background-clip: text;
   }
-  
+
   .subtitle {
     color: #666;
     font-size: 1.2rem;
@@ -30,7 +31,7 @@
   justify-content: center;
   gap: 1rem;
   margin-bottom: 3rem;
-  
+
   .nav-btn {
     padding: 1rem 2rem;
     border: 2px solid #007bff;
@@ -41,17 +42,17 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
     &:hover {
       background: #f8f9fa;
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,123,255,0.2);
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
     }
-    
+
     &.active {
       background: #007bff;
       color: white;
-      box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
     }
   }
 }
@@ -63,47 +64,47 @@
     gap: 2rem;
     margin-bottom: 3rem;
   }
-  
+
   .feature-card {
     background: white;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-left: 4px solid #007bff;
-    
+
     h3 {
       margin-top: 0;
       color: #333;
       font-size: 1.4rem;
     }
-    
+
     p {
       color: #666;
       line-height: 1.6;
     }
-    
+
     ul {
       margin: 1rem 0;
       padding-left: 1.5rem;
-      
+
       li {
         margin: 0.5rem 0;
         color: #555;
       }
     }
   }
-  
+
   .demo-section {
     margin-top: 1rem;
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
-    
+
     p {
       margin: 0.5rem 0;
       font-family: 'Courier New', monospace;
     }
-    
+
     .demo-controls {
       display: flex;
       gap: 0.5rem;
@@ -116,27 +117,27 @@
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
   h3 {
     margin-top: 0;
     color: #333;
     text-align: center;
     margin-bottom: 2rem;
   }
-  
+
   .api-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
   }
-  
+
   .api-item {
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
     border-left: 3px solid #007bff;
-    
+
     code {
       display: block;
       font-family: 'Courier New', monospace;
@@ -145,7 +146,7 @@
       margin-bottom: 0.5rem;
       font-size: 0.9rem;
     }
-    
+
     p {
       margin: 0;
       color: #666;
@@ -161,20 +162,20 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &.btn-primary {
     background-color: #007bff;
     color: white;
-    
+
     &:hover {
       background-color: #0056b3;
     }
   }
-  
+
   &.btn-secondary {
     background-color: #6c757d;
     color: white;
-    
+
     &:hover {
       background-color: #5a6268;
     }

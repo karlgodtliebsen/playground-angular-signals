@@ -1,4 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
+import { DateUtils, Period } from '../utils/data.utils';
 
 export interface AppState {
   user: { name: string; email: string } | null;
@@ -7,13 +8,18 @@ export interface AppState {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignalState {
   // Private state signals
   private _user = signal<AppState['user']>(null);
   private _theme = signal<AppState['theme']>('light');
   private _notifications = signal<AppState['notifications']>([]);
+
+  /** Date/time the user picked (default = now) */
+  readonly selectedDateTime = signal<Date | null>(new Date());
+
+  readonly selectedPeriod = signal<Period | null>(new Period(new Date(), new Date()));
 
   // Public readonly signals
   readonly user = this._user.asReadonly();
@@ -23,36 +29,41 @@ export class SignalState {
   // Computed signals
   readonly isLoggedIn = computed(() => this._user() !== null);
   readonly notificationCount = computed(() => this._notifications().length);
-  readonly hasErrors = computed(() => 
-    this._notifications().some(n => n.type === 'error')
-  );
+  readonly hasErrors = computed(() => this._notifications().some((n) => n.type === 'error'));
 
+  setSelectedDateTime(dt: Date | null) {
+    this.selectedDateTime.set(dt);
+    var period = DateUtils.getDatePeriodAsIsoStrings(dt ?? new Date(), 24);
+    this.selectedPeriod.set(period);
+  }
+
+  setSelectedPeriod(period: Period | null) {
+    this.selectedPeriod.set(period);
+  }
   // State update methods
   setUser(user: AppState['user']) {
     this._user.set(user);
     this.addNotification({
       id: Date.now().toString(),
       message: user ? `Welcome, ${user.name}!` : 'Logged out',
-      type: 'info'
+      type: 'info',
     });
   }
 
   toggleTheme() {
-    this._theme.update(current => current === 'light' ? 'dark' : 'light');
+    this._theme.update((current) => (current === 'light' ? 'dark' : 'light'));
   }
 
   addNotification(notification: Omit<AppState['notifications'][0], 'id'> & { id?: string }) {
     const newNotification = {
       id: notification.id || Date.now().toString(),
-      ...notification
+      ...notification,
     };
-    this._notifications.update(notifications => [...notifications, newNotification]);
+    this._notifications.update((notifications) => [...notifications, newNotification]);
   }
 
   removeNotification(id: string) {
-    this._notifications.update(notifications => 
-      notifications.filter(n => n.id !== id)
-    );
+    this._notifications.update((notifications) => notifications.filter((n) => n.id !== id));
   }
 
   clearAllNotifications() {
@@ -64,14 +75,14 @@ export class SignalState {
     this.setUser({ name: 'John Doe', email: 'john@example.com' });
     this.addNotification({
       message: 'Demo data loaded successfully',
-      type: 'success'
+      type: 'success',
     });
   }
 
   simulateError() {
     this.addNotification({
       message: 'This is a simulated error message',
-      type: 'error'
+      type: 'error',
     });
   }
 }
